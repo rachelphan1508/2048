@@ -231,7 +231,6 @@ class Game(tk.Frame):
         elif not self.vertical_move() and not self.horizontal_move():
                 game_over_frame = tk.Frame(self.main_grid, borderwidth=2)
                 game_over_frame.place(relx=0.5, rely=0.5, anchor="center")
-                self.main_grid.
                 tk.Label(
                     game_over_frame,
                     text="Game Over!",
