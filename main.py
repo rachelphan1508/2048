@@ -199,19 +199,25 @@ class Game(tk.Frame):
 
     # check if horizontal moves are possible
     def horizontal_move(self):
-        for i in range(4):
-            for j in range(3):
-                if self.matrix[i][j] == self.matrix[i][j+1]:
-                    return True
-        return False
+        if any(0 in row for row in self.matrix):
+            return True
+        else:
+            for i in range(4):
+                for j in range(3):
+                    if self.matrix[i][j] == self.matrix[i][j+1]:
+                        return True
+            return False
 
     # check if vertical moves are possible
     def vertical_move(self):
-        for i in range(3):
-            for j in range(4):
-                if self.matrix[i][j] == self.matrix[i+1][j]:
-                    return True
-        return False
+        if any(0 in row for row in self.matrix):
+            return True
+        else:
+            for i in range(3):
+                for j in range(4):
+                    if self.matrix[i][j] == self.matrix[i+1][j]:
+                        return True
+            return False
 
     # check if game over (win/lose)
 
@@ -219,11 +225,9 @@ class Game(tk.Frame):
         if any(2048 in row for row in self.matrix):
             game_over_frame = tk.Frame(self.main_grid, borderwidth=2)
             game_over_frame.place(relx=0.5, rely=0.5, anchor="center")
-            #root = tk.Tk()
-            #root.attributes("-alpha", 0.4)
             tk.Label(
                 game_over_frame,
-                text="You won!",
+                text="You Won!",
                 bg=c.WINNER_BG,
                 fg=c.GAME_OVER_FONT_COLOR,
                 font=c.GAME_OVER_FONT
